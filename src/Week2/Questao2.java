@@ -1,3 +1,5 @@
+package Week2;
+
 public class Questao2 {
     
     
@@ -17,3 +19,5 @@ public class Questao2 {
         
     }
 }
+//Implemente, de forma recursiva, uma função int pot(int x, int n) que, dados
+//dois números inteiros x e n, calcula o valor de x^n

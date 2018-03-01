@@ -1,3 +1,5 @@
+package Week2;
+
 public class Questao3 {
     
     
@@ -14,7 +16,7 @@ public class Questao3 {
         Questao3 exiba = new Questao3();
         
         exiba.ExibaCrescente(5);
-        
-        
     }
 }
+//Faça uma função recursiva que receba um número inteiro positivo N e exiba 
+//todos os números de 0 até N em ordem crescente.

@@ -1,3 +1,5 @@
+package Week2;
+
 public class Questao1 {
     
     
@@ -17,3 +19,5 @@ public class Questao1 {
         
     }
 }
+//Crie uma função recursiva int soma(int) que receba um número inteiro positivo 
+//N e calcule o somatório dos números de 1 a N

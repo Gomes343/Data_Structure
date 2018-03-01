@@ -1,3 +1,5 @@
+package Week2;
+
 public class Questao4 {
     
     
@@ -18,4 +20,7 @@ public class Questao4 {
         
     }
 }
+
+//Faça uma função recursiva que receba um número inteiro positivo N e exiba
+//todos os números de N até 0 em ordem decrescente.
 

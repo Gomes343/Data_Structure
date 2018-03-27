@@ -38,7 +38,6 @@ public class Pilha_LIFO_Structure{
             return true;
     }
     
-
     public static void main(String[]args){
 
         Pilha_LIFO_Structure p = new Pilha_LIFO_Structure();

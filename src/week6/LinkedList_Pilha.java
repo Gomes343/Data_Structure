@@ -5,12 +5,21 @@ public class LinkedList_Pilha{
     
     public static void main(String[] args) {
 
-
+        System.out.println("TRATAMENTO DE ERROS");
         exibir(inicio);
         desempilhar();
         System.out.println("---------");
         exibir(inicio);
-
+        System.out.println("\n");
+        System.out.println("EXEMPLO PRÁTICO");
+        System.out.println("---------");
+        empilhar(5);
+        empilhar(6);
+        exibir(inicio);
+        System.out.println("---------");
+        desempilhar();
+        exibir(inicio);
+        
     }
 
     static void empilhar(int x) {

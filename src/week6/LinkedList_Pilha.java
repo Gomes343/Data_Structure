@@ -26,8 +26,7 @@ public class LinkedList_Pilha{
         Nodes novo = new Nodes(x);
         if (inicio == null){
             inicio = novo;
-        }
-        else {
+        }else{
             Nodes temp = inicio;
             while (temp.prox != null)
                 temp = temp.prox;
@@ -82,9 +81,5 @@ public class LinkedList_Pilha{
                 exibir(temp.prox);
             }
     }
-
-
-    
-
 
 }

@@ -6,15 +6,22 @@ public class LinkedList {
     public static void main(String[] args) {
 
         inserir(99);
-        inserir(3);
+        inserir(30);
         inserir(6);
+        inserir(30);
+        inserir(60);
+        inserir(22);
 
 
         System.out.println("Essa lista possui "+tamanho(inicio)+" elementos, são eles:");
-        
-        removeValor(3);
         exibir(inicio);
-    
+        
+        System.out.println("Removendo algum deles: ");
+        
+        removeValor(30);
+        
+        exibir(inicio);
+        
     }
     
 
@@ -75,7 +82,6 @@ public class LinkedList {
         
         
         while(temp.prox != null){
-            temp = temp.prox;
             if(first == true && temp2.valor == x){
                 first = false;
                 inicio = inicio.prox;
@@ -86,11 +92,24 @@ public class LinkedList {
                 temp2.prox = temp.prox;
             }
             temp2 = temp;
+            temp = temp.prox;
             first = false;
             nofirst = true;
         }
+        
+        if(temp.prox == null && temp.valor == x)
+            temp2.prox = null;
 
     }
 
-
+    static void exibirInverso(Nodes temp){
+        if(inicio == null)
+            System.out.println("Lista Vazia, nada a exibir");
+        else
+            if (temp != null) {
+                exibirInverso(temp.prox);
+                System.out.println(temp.valor);
+            }
+    }
+    
 }

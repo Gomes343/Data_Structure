@@ -13,7 +13,17 @@ public class LinkedList {
         System.out.println("Essa lista possui "+tamanho(inicio)+" elementos, são eles:");
         
         exibir(inicio);
-
+        System.out.println("--------");
+        
+        
+        removeInicio(inicio);
+        exibir(inicio);
+        
+        System.out.println("--------");
+        
+        removeFim(inicio);
+        exibir(inicio);
+        
     }
 
     static void inserir(int x) {
@@ -45,5 +55,30 @@ public class LinkedList {
 
         return 0;
     }
+
+    static void removeInicio(Nodes temp){
+        inicio = temp.prox;
+    }
+    
+    static void removeFim(Nodes temp){
+        Nodes temp2 = null;
+        while(temp.prox != null){
+            temp2 = temp;
+            temp = temp.prox;
+        }
+        temp2.prox = null;
+
+    }
+
+    static void removeValor(int x){
+        Nodes temp2 = null;
+        while(temp.prox != null){
+            temp2 = temp;
+            temp = temp.prox;
+        }
+        temp2.prox = null;
+
+    }
+
 
 }

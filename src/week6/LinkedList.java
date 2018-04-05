@@ -5,26 +5,18 @@ public class LinkedList {
     
     public static void main(String[] args) {
 
-        inserir(5);
-        inserir(9);
+        inserir(99);
         inserir(3);
-        inserir(12);
+        inserir(6);
+
 
         System.out.println("Essa lista possui "+tamanho(inicio)+" elementos, são eles:");
         
+        removeValor(3);
         exibir(inicio);
-        System.out.println("--------");
-        
-        
-        removeInicio(inicio);
-        exibir(inicio);
-        
-        System.out.println("--------");
-        
-        removeFim(inicio);
-        exibir(inicio);
-        
+    
     }
+    
 
     static void inserir(int x) {
         Nodes novo = new Nodes(x);
@@ -70,13 +62,33 @@ public class LinkedList {
 
     }
 
-    static void removeValor(int x){
-        Nodes temp2 = null;
-        while(temp.prox != null){
-            temp2 = temp;
-            temp = temp.prox;
+    static void removeValor( int x){
+        Nodes temp = inicio;
+        Nodes temp2 = temp;
+        boolean first = true;
+        boolean nofirst = false;
+        
+        if(temp.prox == null && temp.valor == x){
+            inicio = null;
         }
-        temp2.prox = null;
+
+        
+        
+        while(temp.prox != null){
+            temp = temp.prox;
+            if(first == true && temp2.valor == x){
+                first = false;
+                inicio = inicio.prox;
+                nofirst = false;
+            }
+            
+            if(temp.valor == x && nofirst == true){
+                temp2.prox = temp.prox;
+            }
+            temp2 = temp;
+            first = false;
+            nofirst = true;
+        }
 
     }
 

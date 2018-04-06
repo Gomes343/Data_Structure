@@ -1,4 +1,7 @@
 package week6;
+
+import java.util.Scanner;
+
 public class LinkedList_Fila{
     
     static int n = 5;
@@ -9,6 +12,10 @@ public class LinkedList_Fila{
     
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
+        System.out.println("informe o tamanho da fila");
+        System.out.println("5");
+        n = 5; // ou sc.nextInt();
         exibir(c);
         enfileirar(5);
         enfileirar(667);
@@ -41,9 +48,9 @@ public class LinkedList_Fila{
         System.out.println("\n"+"\n");
         System.out.println("enfileirando valores novamente");
         enfileirar(6);
-        enfileirar(6);
-        enfileirar(6);
-        enfileirar(6);
+        enfileirar(5);
+        enfileirar(4);
+        enfileirar(1);
         exibir(c);
     }
 

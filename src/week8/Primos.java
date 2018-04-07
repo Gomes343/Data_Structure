@@ -46,41 +46,31 @@ public class Primos {
     static void encontrarPrimos() {
         Nodes temp = inicio;
         Nodes temp2 = temp.prox;
-        Nodes temp3 = inicio;
-        int cont = 0, cont2 = 0;
+
+
 
         while(temp.prox != null){
-            
         if((temp.valor == 0)||(temp.valor == 1)){
             inicio = temp.prox;
             temp2 = temp.prox;
             temp = temp.prox;
         }else{
-            
             temp2 = temp.prox;
             while(temp2 != null){
                 System.out.println("a comparação "+temp2.valor+" % "+temp.valor);
                 
-                
-                
                 if((temp2.prox == null) && (temp2.valor % temp.valor == 0)){
                     temp2.ant.prox = null;
                 }
-                
                 if(temp2.valor % temp.valor == 0 && temp2.prox != null){
                     temp2.ant.prox = temp2.prox;
                     temp2.prox.ant = temp2.ant;
                 }
-                
-                
-                
                 temp2 = temp2.prox;
-                
             }
-            
             temp = temp.prox;
         }
-        }
+    }
         
         
     }

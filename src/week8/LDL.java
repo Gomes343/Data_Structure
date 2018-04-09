@@ -1,5 +1,5 @@
 package week8;
-public class ComplexLinkedList {
+public class LDL{
     
     static Nodes inicio = null;
     static Nodes fim = null;
@@ -12,10 +12,11 @@ public class ComplexLinkedList {
 
 
         System.out.println("Essa lista possui "+tamanho(inicio)+" elementos, são eles:");
-        exibir(inicio);
-        
 
+       
+        exibir();
         
+        exibirInverso();
     }
     
 
@@ -36,15 +37,28 @@ public class ComplexLinkedList {
         }
     }
 
-    static void exibir(Nodes temp) {
+    static void exibir() {
+        Nodes temp = inicio;
         if (inicio == null) 
             System.out.println("Lista Vazia, nada a exibir");
-        else 
-            if (temp != null) {
+        else{ 
+            while(temp != null){
                 System.out.println(temp.valor);
-                exibir(temp.prox);
+                temp = temp.prox;
             }
+        }
     }
+
+    static void exibirInverso(){
+        Nodes temp = fim;
+        if(fim == null)
+            System.out.println("Lista Vazia, nada a exibir");
+        else
+            while(temp != null){
+                System.out.println(temp.valor);
+                temp = temp.ant;
+            }
+    } 
 
     static int tamanho(Nodes temp) {
         if (temp != null)
@@ -53,61 +67,49 @@ public class ComplexLinkedList {
         return 0;
     }
 
-    static void removeInicio(Nodes temp){
-        inicio = temp.prox;
+    static void removeInicio(){
+        inicio = inicio.prox;
+        inicio.ant = null;
     }
     
-    static void removeFim(Nodes temp){
-        Nodes temp2 = null;
-        while(temp.prox != null){
-            temp2 = temp;
-            temp = temp.prox;
-        }
-        temp2.prox = null;
-
+    static void removeFim(){
+        fim = fim.ant;
+        fim.ant.prox = null;
     }
 
-    static void removeValor( int x){
+    static void removeValor(int x){
         Nodes temp = inicio;
-        Nodes temp2 = temp;
         boolean first = true;
         boolean nofirst = false;
         
         if(temp.prox == null && temp.valor == x){
             inicio = null;
+            fim = null;
         }
 
         
         
         while(temp.prox != null){
-            if(first == true && temp2.valor == x){
+            if(first == true && temp.valor == x){
                 first = false;
                 inicio = inicio.prox;
+                inicio.ant = null;
                 nofirst = false;
             }
             
             if(temp.valor == x && nofirst == true){
-                temp2.prox = temp.prox;
+                temp.ant.prox = temp.prox;
+                temp.prox.ant = temp.ant;
             }
-            temp2 = temp;
             temp = temp.prox;
             first = false;
             nofirst = true;
         }
         
         if(temp.prox == null && temp.valor == x)
-            temp2.prox = null;
+            temp.ant.prox = null;
+            fim = fim.ant;
 
     }
 
-    static void exibirInverso(Nodes temp){
-        if(inicio == null)
-            System.out.println("Lista Vazia, nada a exibir");
-        else
-            if (temp != null) {
-                exibirInverso(temp.prox);
-                System.out.println(temp.valor);
-            }
-    }
-    
 }

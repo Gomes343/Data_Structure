@@ -1,7 +1,6 @@
 package week8;
 
 import java.util.Scanner;
-import static week8.ComplexLinkedList.inicio;
 
 public class Primos {
     
@@ -18,9 +17,8 @@ public class Primos {
         gerarValores();
 
         encontrarPrimos();
-
+        
         exibir(inicio);
-
 
     }
     

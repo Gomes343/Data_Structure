@@ -16,6 +16,13 @@ public class Primos {
         System.out.println("Gerando valores");
         gerarValores();
 
+        System.out.println("Os Valores Gerados Foram:");
+        exibir(inicio);
+        
+        
+        System.out.println("============================================");
+        System.out.println("============================================");
+        
         encontrarPrimos();
         
         exibir(inicio);

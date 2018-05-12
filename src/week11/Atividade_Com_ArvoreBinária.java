@@ -1,29 +1,30 @@
-package week10;
+package week11;
 
-public class ArvoreB {
+import java.util.ArrayList;
 
+
+
+public class Atividade_Com_ArvoreBinária {
     static NoA raiz = null;
-
-    public static void main(String[] args) {
-
-        //https://www.devmedia.com.br/trabalhando-com-arvores-binarias-em-java/25749
-        insereIterativo(9);
-        insereIterativo(6);
-        insereIterativo(10);
-        insereIterativo(3);
-        insereIterativo(7);
-        insereIterativo(12);
-        insereIterativo(8);
+    ArrayList<Integer> tamanho300 = new ArrayList();
+    ArrayList<Integer> tamanho500 = new ArrayList();
+    ArrayList<Integer> tamanho1000 = new ArrayList();
+    ArrayList<Integer> tamanho3000 = new ArrayList();
+    ArrayList<Integer> tamanho5000 = new ArrayList();
+    ArrayList<Integer> tamanho10000 = new ArrayList();
+    
+    public static void main(String[]args){
         
-        //ExibeOrdenado(raiz);
-        //ExibeInverso(raiz);
-        //ExibeFolhas(raiz);
-        //Exibe1Filho(raiz);
+            
         
-        ExibeSubDir(raiz);
-
-        System.out.println("Quantidade de Folhas é: " + contaFolhas(raiz));
-        System.out.println("A Profundidade é: " + profundidade(raiz));
+        
+        
+        
+        
+        
+    }
+    
+    public static void LerArquivos(){
 
     }
 
@@ -171,7 +172,4 @@ public class ArvoreB {
         }
     }
 
-    
-    
-    
 }

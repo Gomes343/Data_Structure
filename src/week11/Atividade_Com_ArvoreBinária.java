@@ -1,6 +1,13 @@
 package week11;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 
@@ -13,9 +20,18 @@ public class Atividade_Com_ArvoreBinária {
     ArrayList<Integer> tamanho5000 = new ArrayList();
     ArrayList<Integer> tamanho10000 = new ArrayList();
     
+    static ArrayList<Double> teste = new ArrayList();
+    
     public static void main(String[]args){
         
-            
+    for(int i = 1 ; i < 7 ; i++){
+        
+        
+    
+        
+        
+        
+    }    
         
         
         
@@ -24,7 +40,18 @@ public class Atividade_Com_ArvoreBinária {
         
     }
     
-    public static void LerArquivos(){
+    public static void LerArquivos(String arq) throws FileNotFoundException, IOException{
+        
+        BufferedReader buffRead = new BufferedReader(new FileReader(arq));
+        String linha = buffRead.readLine();
+        double x;
+        while (linha != null) {
+            x = Double.parseDouble(linha);
+            teste.add(x);
+            
+            linha = buffRead.readLine();
+        }
+        buffRead.close();
 
     }
 

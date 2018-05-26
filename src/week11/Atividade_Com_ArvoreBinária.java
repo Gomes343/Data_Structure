@@ -1,6 +1,7 @@
 package week11;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,42 +13,104 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class Atividade_Com_ArvoreBinária {
+    
     static NoA raiz = null;
-    ArrayList<Integer> tamanho300 = new ArrayList();
-    ArrayList<Integer> tamanho500 = new ArrayList();
-    ArrayList<Integer> tamanho1000 = new ArrayList();
-    ArrayList<Integer> tamanho3000 = new ArrayList();
-    ArrayList<Integer> tamanho5000 = new ArrayList();
-    ArrayList<Integer> tamanho10000 = new ArrayList();
+    static String arq;
+    static int contFilho = 0;
+    static int somaFolhaPar = 0;
+    static int contFolhaImpar = 0;
+    static int contFilho10 = 0;
     
-    static ArrayList<Double> teste = new ArrayList();
+    public static void main(String[]args) throws IOException{
+        
+    arq = "300";
+    LerArquivos(arq);
+    PerguntasRespostas();    
+    raiz = null;
+    contFilho = 0;
+    somaFolhaPar = 0;
+    contFolhaImpar = 0;
+    contFilho10 = 0;
     
-    public static void main(String[]args){
-        
-    for(int i = 1 ; i < 7 ; i++){
-        
-        
     
-        
-        
-        
-    }    
-        
-        
-        
-        
-        
+    arq = "500";
+    LerArquivos(arq);
+    PerguntasRespostas();
+    raiz = null;
+    contFilho = 0;
+    somaFolhaPar = 0;
+    contFolhaImpar = 0;
+    contFilho10 = 0;
+    
+    arq = "1000";
+    LerArquivos(arq);
+    PerguntasRespostas();
+    raiz = null;
+    contFilho = 0;
+    somaFolhaPar = 0;
+    contFolhaImpar = 0;
+    contFilho10 = 0;
+    
+    arq = "3000";
+    LerArquivos(arq);
+    PerguntasRespostas();
+    raiz = null;
+    contFilho = 0;
+    somaFolhaPar = 0;
+    contFolhaImpar = 0;
+    contFilho10 = 0;
+    
+    arq = "5000";
+    LerArquivos(arq);
+    PerguntasRespostas();
+    raiz = null;    
+    contFilho = 0;
+    somaFolhaPar = 0;
+    contFolhaImpar = 0;
+    contFilho10 = 0;
+    
+    arq = "10000";
+    LerArquivos(arq);
+    PerguntasRespostas();
+    raiz = null;
+    contFilho = 0;
+    somaFolhaPar = 0;
+    contFolhaImpar = 0;
+    contFilho10 = 0;
+    }
+    
+    
+    public static void PerguntasRespostas(){
+        System.out.println("========== ARQUIVO "+arq+".txt ==========");
+        System.out.println("Quantas Folhas existem?");
+        System.out.println("R: "+contaFolhas(raiz));
+        System.out.println("Qual a Profundidade?");
+        System.out.println("R: "+profundidade(raiz));        
+        System.out.println("Quantos Nós possuem apenas 1 filho?");
+        Conta1Filho(raiz);
+        System.out.println("R: "+contFilho);
+        System.out.println("Qual a soma dos valores de todas folhas que possuem valor par?");
+        SomaFolhaPar(raiz);
+        System.out.println("R: "+somaFolhaPar);
+        System.out.println("Quantas folhas possuem valor impar?");
+        ContaFolhaImpar(raiz);
+        System.out.println("R: "+contFolhaImpar);
+        System.out.println("Quantos nós, que possuem 2 filhos, são multiplos de 10?");
+        No2Filhos10(raiz);
+        System.out.println("R: "+contFilho10);
+        System.out.println(" \n \n \n ");
         
     }
     
     public static void LerArquivos(String arq) throws FileNotFoundException, IOException{
         
-        BufferedReader buffRead = new BufferedReader(new FileReader(arq));
+        String currentDirectory = new File("").getAbsolutePath();
+        BufferedReader buffRead = new BufferedReader(new FileReader(currentDirectory+"\\src\\week11\\" +arq+".txt"));
         String linha = buffRead.readLine();
-        double x;
+        int x;
         while (linha != null) {
-            x = Double.parseDouble(linha);
-            teste.add(x);
+            x = Integer.parseInt(linha);
+            insereIterativo(x);
             
             linha = buffRead.readLine();
         }
@@ -121,6 +184,39 @@ public class Atividade_Com_ArvoreBinária {
         
     }
     
+    public static void No2Filhos10(NoA temp){
+        if(temp != null){
+            No2Filhos10(temp.esq);
+            No2Filhos10(temp.dir);
+            
+            if((temp.esq != null && temp.dir != null && temp.valor % 10 == 0)){
+                contFilho10++;
+            }
+        }
+    }
+    public static void ContaFolhaImpar(NoA temp){
+        if (temp != null){
+            ContaFolhaImpar(temp.esq);
+            ContaFolhaImpar(temp.dir);
+            
+            if(temp.esq == null && temp.dir == null && temp.valor % 2 == 1){
+                contFolhaImpar++;         
+            }
+        }
+    }
+    
+    public static void SomaFolhaPar(NoA temp){
+        if (temp != null){
+            SomaFolhaPar(temp.esq);
+            SomaFolhaPar(temp.dir);
+            
+            if(temp.esq == null && temp.dir == null && temp.valor % 2 == 0){
+                somaFolhaPar += temp.valor;
+            }
+        }
+    }
+    
+    
     public static void ExibeFolhas(NoA temp){
         if (temp != null){
             ExibeFolhas(temp.esq);
@@ -162,6 +258,18 @@ public class Atividade_Com_ArvoreBinária {
             System.out.printf(temp.esq.valor+" "+temp.dir.valor+"\n");    
     }
         
+    
+    public static void Conta1Filho(NoA temp){
+        int cont = 0;
+        if (temp != null){
+            Conta1Filho(temp.esq);
+            Conta1Filho(temp.dir);
+            
+            if((temp.esq == null && temp.dir != null)||(temp.esq != null & temp.dir == null)){
+                contFilho++;
+            }   
+        }
+    }
     public static int contaFolhas(NoA temp) {
         if (temp == null) {
             return 0;
@@ -199,4 +307,6 @@ public class Atividade_Com_ArvoreBinária {
         }
     }
 
+    
+    
 }

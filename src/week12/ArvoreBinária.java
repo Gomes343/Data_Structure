@@ -58,7 +58,6 @@ public class ArvoreBinária {
     printBinaryTree(root.esq, level+1);
 }    
 
-
     public static Nó BuscarValor(Nó temp, int v) {
         if (temp == null) {
             return null;

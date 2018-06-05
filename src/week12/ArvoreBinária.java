@@ -1,5 +1,7 @@
 package week12;
 
+import javax.swing.tree.TreeNode;
+
 public class ArvoreBinária {
 
     static Nó raiz = null;
@@ -14,12 +16,15 @@ public class ArvoreBinária {
         insereIterativo(7);
         insereIterativo(4);
 
+        
+        printBinaryTree(raiz,0);
+        
         //System.out.println(MaiorValor(raiz));
-        System.out.println("raiz " + raiz);
-        System.out.println("esq " + raiz.esq);
-        System.out.println("dir " + raiz.dir);
-        System.out.println(raiz.esq.dir);
-        RemoveValor(4);
+        //System.out.println("raiz " + raiz);
+        //System.out.println("esq " + raiz.esq);
+        //System.out.println("dir " + raiz.dir);
+        //System.out.println(raiz.esq.dir);
+        //RemoveValor(4);
 
 
 
@@ -37,6 +42,22 @@ public class ArvoreBinária {
         //PreExibe(raiz);
         //ExibeOrdenado(raiz);
     }
+    
+
+    public static void printBinaryTree(Nó root, int level){
+    if(root==null)
+         return;
+    printBinaryTree(root.dir, level+1);
+    if(level!=0){
+        for(int i=0;i<level-1;i++)
+            System.out.print("|\t");
+            System.out.println("|-------"+root.valor);
+    }
+    else
+        System.out.println(root.valor);
+    printBinaryTree(root.esq, level+1);
+}    
+
 
     public static Nó BuscarValor(Nó temp, int v) {
         if (temp == null) {

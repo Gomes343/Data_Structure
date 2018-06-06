@@ -1,48 +1,51 @@
 package week12;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.tree.TreeNode;
 
 public class ArvoreBinária {
 
     static Nó raiz = null;
+    static ArrayList<Nó> ar = new ArrayList();
 
-    public static void main(String[] args) {
-
-        //https://www.devmedia.com.br/trabalhando-com-arvores-binarias-em-java/25749
-        insereIterativo(5);
-        insereIterativo(2);
-        insereIterativo(1);
-        insereIterativo(6);
-        insereIterativo(7);
-        insereIterativo(4);
-
+    public static void main(String[] args) throws IOException {
         
-        printBinaryTree(raiz,0);
+        // QUESTÃO 1
+        LerArquivos("Questao1");
+        LocalizarPar(raiz);
         
-        //System.out.println(MaiorValor(raiz));
-        //System.out.println("raiz " + raiz);
-        //System.out.println("esq " + raiz.esq);
-        //System.out.println("dir " + raiz.dir);
-        //System.out.println(raiz.esq.dir);
-        //RemoveValor(4);
-
-
-
-        /*
-        insereIterativo(8);
-        insereIterativo(3);
-        insereIterativo(10);
-        insereIterativo(1);
-        insereIterativo(6);
-        insereIterativo(14);
-        insereIterativo(4);
-        insereIterativo(7);
-        insereIterativo(13);
-         */
-        //PreExibe(raiz);
-        //ExibeOrdenado(raiz);
+        for(int i = 0 ; i < ar.size() ; i++){
+            Nó temp = ar.get(i);       
+            excluir(raiz,temp.valor);
+        }
+        
+        PreExibe(raiz);
+        
+        System.out.println(contaFolhas(raiz));
+        
+        
+        
     }
-    
+    public static void LerArquivos(String arq) throws FileNotFoundException, IOException{
+        
+        String currentDirectory = new File("").getAbsolutePath();
+        BufferedReader buffRead = new BufferedReader(new FileReader(currentDirectory+"\\src\\week12\\" +arq+".txt"));
+        String linha = buffRead.readLine();
+        int x;
+        while (linha != null) {
+            x = Integer.parseInt(linha);
+            insereIterativo(x);
+            
+            linha = buffRead.readLine();
+        }
+        buffRead.close();
+
+    }
 
     public static void printBinaryTree(Nó root, int level){
     if(root==null)
@@ -106,6 +109,51 @@ public class ArvoreBinária {
             System.out.println("Não está na árvore");
         }
     }
+    
+    public static boolean localizar(Nó aux, int num) {
+        boolean loc = false;
+        if (aux != null) {
+            if (aux.valor == num) {
+                loc = true;
+            } else if (num < aux.valor) {
+                loc = localizar(aux.esq, num);
+            } else {
+                loc = localizar(aux.dir, num);
+            }
+        }
+        return loc;
+    }
+    
+    public static Nó excluir(Nó aux, int num) {
+        Nó temp, temp2, rotativo = null;
+        if (aux.valor == num){
+            if (aux.esq == aux.dir){
+                return null;
+            }else
+                if (aux.esq == null){
+                return aux.dir;
+            } else 
+                if (aux.dir == null) {
+                return aux.esq;
+            } else{
+                temp2 = aux.dir;
+                temp = aux.dir;
+                while (temp.esq != null) {
+                	rotativo = temp;
+                    temp = temp.esq;
+                }
+                aux.valor = temp.valor;
+                //temp = null;
+                //rotativo.esq = null;
+                return aux;
+            }
+        } else if (aux.valor < num) {
+            aux.dir = excluir(aux.dir, num);
+        } else {
+            aux.esq = excluir(aux.esq, num);
+        }
+        return aux;
+    }
 
     public static void insereIterativo(int v) {
         Nó novo = new Nó(v);
@@ -137,6 +185,16 @@ public class ArvoreBinária {
         }
     }
 
+    public static void LocalizarPar(Nó temp){
+        if (temp != null){
+            LocalizarPar(temp.esq);
+            LocalizarPar(temp.dir);
+            if(temp.valor % 2 == 0){
+                ar.add(temp);
+            }
+        }
+    }
+    
     public static void PreExibe(Nó temp) {
         if (temp != null) {
             System.out.println(temp.valor);

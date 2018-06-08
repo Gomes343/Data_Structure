@@ -12,24 +12,108 @@ public class ArvoreBinária {
 
     static Nó raiz = null;
     static ArrayList<Nó> ar = new ArrayList();
-
+    static ArrayList<Integer> ArrayDoNó = new ArrayList();
+    static int cont;
+    
     public static void main(String[] args) throws IOException {
         
         // QUESTÃO 1
+        System.out.println("QUESTÃO 1");
         LerArquivos("Questao1");
         LocalizarPar(raiz);
-        
+        System.out.println("DELETANDO TODOS OS NUMEROS PARES");
         for(int i = 0 ; i < ar.size() ; i++){
             Nó temp = ar.get(i);       
             excluir(raiz,temp.valor);
+        }        
+        
+        System.out.println("Folhas restantes: "+contaFolhas(raiz));
+        System.out.println("\n \n");
+        // FIM QUESTÃO 1
+        
+        //QUESTÃO 2
+        raiz = null;
+        LerArquivos("Questao2");
+        System.out.println("QUESTÃO 2");
+        Conta1Filho(raiz);
+        System.out.println("Numero de Nós que possuem 1 filho: "+cont);
+        System.out.println("\n \n");
+        // FIM QUESTÃO 2
+        
+        //QUESTÃO 3
+        raiz = null;
+        ar.clear();
+        System.out.println(ar.size());
+        LerArquivos("Questao3");
+        System.out.println("QUESTÃO 3");
+        System.out.println("DELETANDO TODOS OS NUMEROS MULTIPLOS DE 5");
+        LocalizarMultiplo5(raiz);
+        for(int i = 0; i < ar.size() ; i++){
+            Nó temp = ar.get(i);
+            excluir(raiz,temp.valor);
         }
-        
-        PreExibe(raiz);
-        
-        System.out.println(contaFolhas(raiz));
-        
+        System.out.println("Folhas restantes: "+contaFolhas(raiz));
+        System.out.println("\n \n");
+        // FIM QUESTÃO 3
         
         
+        
+        //QUESTÃO 4
+        raiz = null;
+        LerArquivos("Questao4");
+        System.out.println("QUESTÃO 4");
+        System.out.println("o valor é: "+Questao4(raiz.esq));
+        System.out.println("\n \n");
+        // FIM QUESTÃO 4
+        
+        
+        
+        //QUESTÃO 5
+        raiz = null;
+        //LerArquivos("Questao5");
+        //System.out.println("QUESTÃO 5");
+        //Nó_to_Array(raiz);
+        //raiz = null;
+        //Questao5(raiz);
+        //System.out.println(profundidade(raiz));
+        //insere(raiz,5);
+        //System.out.println(raiz.valor);
+        System.out.println("\n \n");
+        // FIM QUESTÃO 5
+        
+        
+        //QUESTÃO 6
+        raiz = null;
+        ar.clear();
+        LerArquivos("Questao6");
+        System.out.println("QUESTÃO 6");
+        System.out.println("DELETANDO TODOS OS NUMEROS MULTIPLOS DE 3, 5 e 7");
+        LocalizarMultiplo(raiz);
+        for(int i = 0; i < ar.size() ; i++){
+            Nó temp = ar.get(i);
+            excluir(raiz,temp.valor);
+        }
+        System.out.println("Folhas restantes: "+contaFolhas(raiz));
+        System.out.println("\n \n");
+        // FIM QUESTÃO 6
+        
+        
+    }
+    public static void Questao5(Nó temp){
+        insereIterativo(0);
+        for(int i = 0 ; i < ArrayDoNó.size() ; i++){
+            if(ArrayDoNó.get(i) % 2 == 0){
+                insere(raiz.dir,ArrayDoNó.get(i));
+            }else{
+                insere(raiz.esq,ArrayDoNó.get(i));
+            }
+        }
+    }
+    public static int Questao4(Nó temp){
+        while(temp.dir != null){
+            temp = temp.dir;
+        }
+        return temp.valor;
     }
     public static void LerArquivos(String arq) throws FileNotFoundException, IOException{
         
@@ -155,6 +239,36 @@ public class ArvoreBinária {
         return aux;
     }
 
+    public static void insere(Nó temp, int v) {
+        Nó novo = new Nó(v);
+
+        if (temp == null) {
+            temp = novo;
+        } else {
+            boolean inseriu = false;
+            Nó temp2 = temp;
+
+            while (!inseriu) {
+                if (novo.valor <= temp2.valor) {
+                    if (temp2.esq == null) {
+                        temp2.esq = novo;
+                        inseriu = true;
+                    } else {
+                        temp2 = temp2.esq;
+                    }
+                } else {
+                    if (temp2.dir == null) {
+                        temp2.dir = novo;
+                        inseriu = true;
+                    } else {
+                        temp2 = temp2.dir;
+                    }
+
+                }
+            }
+        }
+    }
+    
     public static void insereIterativo(int v) {
         Nó novo = new Nó(v);
 
@@ -185,6 +299,26 @@ public class ArvoreBinária {
         }
     }
 
+    public static void LocalizarMultiplo5(Nó temp){
+        if (temp != null){
+            LocalizarMultiplo5(temp.esq);
+            LocalizarMultiplo5(temp.dir);
+            if(temp.valor % 5 == 0){
+                ar.add(temp);
+            }
+        }
+    }
+    
+    public static void LocalizarMultiplo(Nó temp){
+        if (temp != null){
+            LocalizarMultiplo5(temp.esq);
+            LocalizarMultiplo5(temp.dir);
+            if(temp.valor % 5 == 0 || temp.valor % 2 == 0 || temp.valor % 3 == 0){
+                ar.add(temp);
+            }
+        }
+    }
+    
     public static void LocalizarPar(Nó temp){
         if (temp != null){
             LocalizarPar(temp.esq);
@@ -200,6 +334,14 @@ public class ArvoreBinária {
             System.out.println(temp.valor);
             PreExibe(temp.esq);
             PreExibe(temp.dir);
+        }
+    }
+    
+    public static void Nó_to_Array(Nó temp){
+        if(temp != null) {
+            Nó_to_Array(temp.esq);
+            Nó_to_Array(temp.dir);
+            ArrayDoNó.add(temp.valor);
         }
     }
 
@@ -219,6 +361,7 @@ public class ArvoreBinária {
         }
     }
 
+    
     public static void Exibe1Filho(Nó temp) {
         if (temp != null) {
             Exibe1Filho(temp.esq);
@@ -284,6 +427,18 @@ public class ArvoreBinária {
                 if (temp.esq == null && temp.dir == null) {
                     return 1;
                 }
+            }
+        }
+        return 0;
+    }
+    
+    public static int Conta1Filho(Nó temp) {
+        if (temp != null) {
+            Conta1Filho(temp.esq);
+            Conta1Filho(temp.dir);
+
+            if ((temp.esq == null && temp.dir != null) || (temp.esq != null && temp.dir == null)) {
+                cont++;
             }
         }
         return 0;
